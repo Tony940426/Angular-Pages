@@ -1,9 +1,18 @@
 <div class="container">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item" [ngClass] = "{disabled: currentPage === 0}"><a class="page-link">Prev</a></li>
-      <li *ngFor ="let image of images; let i = index;" class="page-item" [ngClass]="{active: i === currentPage}"><a (click) = "nextNumberPage()" class="page-link" href="#">{{i + 1}}</a></li>
-      <li class="page-item">  <a class="page-link" [ngClass] = "{disabled: currentPage === images.length - 1}">Next</a></li>
+      <li class="page-item" [ngClass] = "{disabled: currentPage === 0}"><a class="page-link" (click) = "currentPage = currentPage - 1">Prev</a></li>
+      <ng-container *ngFor ="let image of images; let i = index;">
+        <li  *ngIf = "checkWindowIndex(i)" class="page-item" [ngClass]="{active: i === currentPage}"><a (click) = "currentPage = i" class="page-link" href="#">{{i + 1}}</a></li>
+      </ng-container>
+      <li class="page-item">  <a class="page-link" (click)="currentPage = currentPage + 1" [ngClass] = "{disabled: currentPage === images.length - 1}">Next</a></li>
     </ul>
   </nav>
+  <div class="display-box">
+    <h4>{{ images[currentPage].title}}</h4>
+    <img [src]="images[currentPage].url" alt="">
+  </div>
 </div>
+
+<!-- You can only have 1 structural directives  -->
+<!-- You can use ng-container as it is like a invisible element -->
