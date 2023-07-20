@@ -1,7 +1,7 @@
 <div class="container">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <li class="page-item" [ngClass] = "{disabled: currentPage === 0}"><a class="page-link" (click) = "currentPage = currentPage - 1">Prev</a></li>
+      <li class="page-item" appClass [ngClass] = "{disabled: currentPage === 0}"><a class="page-link" (click) = "currentPage = currentPage - 1">Prev</a></li>
       <ng-container *ngFor ="let image of images; let i = index;">
         <li  *ngIf = "checkWindowIndex(i)" class="page-item" [ngClass]="{active: i === currentPage}"><a (click) = "currentPage = i" class="page-link" href="#">{{i + 1}}</a></li>
       </ng-container>
@@ -16,3 +16,22 @@
 
 <!-- You can only have 1 structural directives  -->
 <!-- You can use ng-container as it is like a invisible element -->
+
+<!-- <div [ngSwitch]="currentPage">
+  <div *ngSwitchCase="0">
+    Print Page to Zero
+  </div>
+  <div *ngSwitchCase="1">
+    Print Page to 1
+  </div>
+  <div *ngSwitchCase="2">
+    Print Page to 2
+  </div>
+  <div *ngSwitchCase="3">
+    Print Page to 3
+  </div>
+  <div *ngSwitchDefault>
+    This is a default page
+  </div>
+</div>
+ -->
